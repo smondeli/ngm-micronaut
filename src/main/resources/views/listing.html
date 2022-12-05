@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+    <title>NGM</title>
+    <link href="../public/styles.css"
+          rel="stylesheet" media="screen"/>
+</head>
+
+<script>
+    function onLogoutClick() {
+        document.cookie = "";
+        document.location.href = "/"
+    }
+
+    function onViewCart() {
+        document.location.href = "/cart";
+    }
+
+    function loadData(selectedCategory) {
+
+    }
+
+
+</script>
+
+<body>
+<div class="title" id="market">
+    <img class="title_img" src="../public/logo_transparent.png" height="100%"/>
+    <p class="title_p">Neighbourhood Grocery Market</p>
+    <div class="right_user_div">
+        <img class="title_img" src="../public/user.svg" height="100%"/>
+        <p float="left" height="100%" class="right_user_div_p">
+            Hi, Welcome
+        </p>
+        <!--        <a class="cart" id="cart" href="javascript:onViewCart();">-->
+        <!--            <img class="title_img" src="../../static/images/cart.svg" width="40%"-->
+        <!--                 th:src="@{/images/cart.svg}"/>-->
+        <!--            <p id="numOfItemsInCart" class="numOfItemsInCart">0</p>-->
+        <!--        </a>-->
+        <a style="padding-left: 10px" href="javascript:onLogoutClick();">
+            <img style="float: right" src="../public/logout.svg" height="100%"  title="Log out"/>
+        </a>
+    </div>
+</div>
+
+<div class="header">Market Place</div>
+<div class="main_div">
+    <div class="content_div">
+        <div id="error_header"
+             style="color: red; font-size: 20; display: inline; margin-left: -60px;"></div>
+        <div class="left_navigation" id="left-nav">
+            <div class="header" style="text-align: left;font-size: large;">
+                Category
+            </div>
+            <div>
+                <button class="category_List" th:text="All"></button>
+            </div>
+            <tr th:each="category : ${categories}">
+                <div>
+                    <button class="category_List" th:text="${category}"></button>
+                </div>
+            </tr>
+        </div>
+        <div class="market_listing" id="listing">
+            <tr th:each="item : ${items}">
+                <div class="item">
+                    <div class="item-image">
+                        <!--                        <img src="'../public/'+${item.name}+'.png'"  />-->
+                        <img th:src="'../public/'+${item.name}+'.png'" />
+                    </div>
+                    <div class="item-price">
+                        $<span th:text="${item.price}"/>
+                    </div>
+                    <div class="item-details">
+                        <span th:text="${item.name}"/>
+                    </div>
+                </div>
+            </tr>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    Powered by <a href="https://www.oracle.com/cloud/">Application created using Micronaut Framework</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+micronaut:
+  application:
+    name: ngm
+  router:
+    static-resources:
+      default:
+        enabled: true
+        mapping: "/public/**"
+        paths: "classpath:public"
+netty:
+  default:
+    allocator:
+      max-order: 3
